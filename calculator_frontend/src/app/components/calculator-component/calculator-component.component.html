@@ -1,0 +1,137 @@
+<form class="container" (submit)="onCalculate($event)">
+  <mat-card class="card">
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Figure</mat-label>
+      <mat-select [(value)]="figureValue" (selectionChange)="selectFigure($event)">
+        <mat-option [value]="figure.label" *ngFor="let figure of figures">{{figure.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="field" >
+      <mat-label>Messure de Calcul</mat-label>
+      <mat-select [(value)]="unityValue">
+        <mat-option [value]="unity.value" *ngFor="let unity of unities">{{unity.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Type de Calcul</mat-label>
+      <mat-select [(value)]="typeValue">
+        <mat-option *ngFor="let type of typeCalcul" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="values">
+      <mat-form-field *ngIf="figureValue =='Carree'" appearance="outline" class="field-value">
+        <mat-label>Coté</mat-label>
+        <input type="number" [value]="square.cote" (input)="squareChange($event)" matInput placeholder="Entrer un nombre">
+        <mat-hint *ngIf="square.error">
+          <mat-error>Veuillez entrer une valeur positive</mat-error>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="figureValue =='Cercle'" appearance="outline" class="field-value">
+        <mat-label>Rayon</mat-label>
+        <input type="number" [value]="circle.rayon" (input)="circleChange($event)" matInput placeholder="Entrer le rayon">
+        <mat-hint *ngIf="circle.error">
+          <mat-error>Veuillez entrer une valeur positive</mat-error>
+        </mat-hint>
+      </mat-form-field>
+
+      <div class="row" *ngIf="figureValue =='Rectangle'">
+        <mat-form-field appearance="outline" class="field-value">
+          <mat-label>Longeuer (L)</mat-label>
+          <input type="number" [value]="rectangle.longueur" (input)="rectangleLongueurChange($event)" matInput placeholder="Entrer la Longueur">
+          <mat-hint *ngIf="rectangle.errorLongueur">
+            <mat-error>Veuillez entrer une valeur positive</mat-error>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="field-value">
+          <mat-label>Largeueur (l)</mat-label>
+          <input type="number" [value]="rectangle.largeur" (input)="rectangleLargeurChange($event)" matInput placeholder="Entrer la Largeur">
+          <mat-hint *ngIf="rectangle.errorLargeur">
+            <mat-error>Veuillez entrer une valeur positive</mat-error>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="row" *ngIf="figureValue =='Trapeze'">
+        <div class="row" *ngIf="typeValue == 'PERIMETRE'; else rowAre">
+          <mat-form-field appearance="outline" class="field-value">
+            <mat-label>Coté 1</mat-label>
+            <input type="number" [value]="trapeze.cote1" (input)="trapezeCote1Change($event)" matInput placeholder="Entrer le coté 1">
+            <mat-hint *ngIf="trapeze.errorCote1">
+              <mat-error>Veuillez entrer une valeur positive</mat-error>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-value">
+            <mat-label>Coté 2</mat-label>
+            <input type="number" [value]="trapeze.cote2" (input)="trapezeCote2Change($event)" matInput placeholder="Entrer le coté 2">
+            <mat-hint *ngIf="trapeze.errorCote2">
+              <mat-error>Veuillez entrer une valeur positive</mat-error>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-value">
+            <mat-label>Coté 3</mat-label>
+            <input type="number" [value]="trapeze.cote3" (input)="trapezeCote3Change($event)" matInput placeholder="Entrer le coté 3">
+            <mat-hint *ngIf="trapeze.errorCote3">
+              <mat-error>Veuillez entrer une valeur positive</mat-error>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-value">
+            <mat-label>Coté 4</mat-label>
+            <input type="number" [value]="trapeze.cote4" (input)="trapezeCote4Change($event)" matInput placeholder="Entrer le coté 4">
+            <mat-hint *ngIf="trapeze.errorCote4">
+              <mat-error>Veuillez entrer une valeur positive</mat-error>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <ng-template #rowAre>
+          <mat-form-field appearance="outline" class="field-value">
+            <mat-label>Grande Base (B)</mat-label>
+            <input type="number" [value]="trapeze.Base" (input)="trapezeBaseChange($event)" matInput placeholder="Entrer la grande base">
+            <mat-hint *ngIf="trapeze.errorBase">
+              <mat-error>Veuillez entrer une valeur positive</mat-error>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-value">
+            <mat-label>Petite Base (b)</mat-label>
+            <input type="number" [value]="trapeze.base" (input)="trapezebaseChange($event)" matInput placeholder="Entrer la petite base">
+            <mat-hint *ngIf="trapeze.errorbase">
+              <mat-error>Veuillez entrer une valeur positive</mat-error>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-value">
+            <mat-label>Hauteur Base (h)</mat-label>
+            <input type="number" [value]="trapeze.hauteur" (input)="trapezeHauteurChange($event)" matInput placeholder="Entrer la hauteur">
+            <mat-hint *ngIf="trapeze.errorHauteur">
+              <mat-error>Veuillez entrer une valeur positive</mat-error>
+            </mat-hint>
+          </mat-form-field>
+        </ng-template>
+      </div>
+
+
+
+    </div>
+
+
+    <div class="btn-container">
+      <button type="submit" [disabled]="(figureValue =='' || typeValue ==''|| !formValidation)" class="btn-submit" mat-raised-button
+        color="accent">
+        CALCULER
+      </button>
+    </div>
+
+  </mat-card>
+</form>
+
+
+<div class="fab" [style.transform]="(figureValue =='' || typeValue ==''|| !formValidation) ?'scale(0)' : 'scale(1)'">
+  <div class="example-button-container">
+    <button mat-fab color="accent" matTooltip="Effacer le formulaire" (click)="onClear()">
+      <mat-icon>restart_alt</mat-icon>
+    </button>
+  </div>
+</div>

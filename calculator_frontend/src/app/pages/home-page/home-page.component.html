@@ -1,0 +1,43 @@
+<div class="container" *ngIf="!state.error && !state.loading1 && !state.loading2">
+
+  <app-header-component></app-header-component>
+
+  <mat-tab-group class="tab-group">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">calculate</mat-icon>
+        Calculatrice
+      </ng-template>
+      <app-calculator-component [figures]="figures" [unities]="unities" (emitResult)="onHistoryChange($event)"></app-calculator-component>
+    </mat-tab>
+
+    <mat-tab label="second">
+      <ng-template mat-tab-label>
+        <mat-icon  class="tab-icon">history</mat-icon>
+        Historiques
+      </ng-template>
+      <app-history-component [histories]="histories"></app-history-component>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+
+<div class="loading" *ngIf="!state.error && state.loading1 && state.loading2">
+  <mat-spinner ></mat-spinner>
+</div>
+
+
+
+<div class="error-container" *ngIf="state.error">
+  <mat-card class="error-card">
+    <mat-icon  color="warn">error</mat-icon>
+    <div>Erreur survenue lors de la Connexion</div>
+    <button (click)="onRefresh()" mat-raised-button color="primary">Réssayer</button>
+  </mat-card>
+
+</div>
+
+
+<router-outlet></router-outlet>

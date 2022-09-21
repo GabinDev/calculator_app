@@ -1,0 +1,12 @@
+<mat-nav-list (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+
+  <a mat-list-item disableRipple>
+    <span mat-line>{{history!.typeCalcul+' du '+history!.figure}}</span>
+    <span mat-line>{{history!.value +' ('+history!.unity+')'}}</span>
+
+    <button *ngIf="!isHiden" mat-icon-button  (click)="onDeleteHistory(history!.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </a>
+
+</mat-nav-list>

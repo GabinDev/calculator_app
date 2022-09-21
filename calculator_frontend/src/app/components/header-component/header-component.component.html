@@ -1,0 +1,23 @@
+<style>
+  header {
+    display: flex;
+    height: 55px;
+  }
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #673ab7;
+  }
+</style>
+
+
+<header class="primary">
+  <mat-toolbar class="toolbar">
+    <span style="color: white;">Outil Mathematique</span>
+    <button (click)="openBottomSheet()" mat-icon-button style="color: white;" aria-label="Example icon button with a menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+</header>

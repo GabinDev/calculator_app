@@ -1,0 +1,48 @@
+<style>
+  .result {
+    color: #673ab7;
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .copy-anime {
+    animation: copyResult .5s;
+  }
+
+  @keyframes copyResult {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(0);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+</style>
+
+
+
+
+
+
+<h1 mat-dialog-title>Resultat </h1>
+<div mat-dialog-content class="row">
+  <span class="result">{{data.value.toFixed(3) +' '+data.unityText}}</span>
+  <button [class]="isCopy? 'copy-anime':''" (click)="onCopy()" [matTooltip]="isCopy ?  'Copié!' :''" mat-icon-button
+    [color]="isCopy ? 'primary' : 'secandary'">
+    <mat-icon>{{isCopy ? 'done' : 'content_copy'}}</mat-icon>
+  </button>
+</div>
+<div mat-dialog-actions>
+  <button mat-button cdkFocusInitial (click)="onClose()">Ok</button>
+</div>
