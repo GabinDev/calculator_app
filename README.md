@@ -20,7 +20,7 @@ The execution of this web application requires installation of :
 > **Note**
 > make sure you have internet for below steps
 
-The root of the project contains 2 folders `calculator_frontend` and `calculator_app`.
+The root of the project contains 2 folders `calculator_frontend` and `calculator_app`.<br>
 1- in `calculator_app` open the terminal and run the command 
 ```
 npm install && npm run dev
